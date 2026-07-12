@@ -1,22 +1,20 @@
 import './App.css'
-import Background from "./utils/Background.jsx";
-import {useTranslation} from "react-i18next";
-import LanguageSwitcher from "./utils/LanguageSwitcher.jsx";
-import FontSwitcher from "./utils/FontSwitcher.jsx";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import HomePage from "./pages/Home.jsx";
+import AboutPage from "./pages/About.jsx";
+import Root from "./pages/Root.jsx";
 
 function App() {
-  const { t } = useTranslation();
-
-  return (
-    <Background>
-      <h1>{t('tmp.test')}</h1>
-      <div className="tmp">
-        <h2>Test texte avec bg</h2>
-      </div>
-      <LanguageSwitcher />
-      <FontSwitcher />
-    </Background>
-  )
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Root />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="about" element={<AboutPage />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App
