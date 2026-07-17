@@ -1,0 +1,253 @@
+.qf-footer {
+  --qf-bg: #060908;
+  --qf-bg-elevated: #2222;
+  --qf-particle: #eef2ff;
+  --qf-photon: #7dd3fc;
+  --qf-accent: #a78bfa;
+  --qf-text: #e7e9ee;
+  --qf-text-muted: #aaa;
+  --qf-font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --qf-font-body: "Inter", "Segoe UI", sans-serif;
+  --qf-font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--qf-bg);
+  color: var(--qf-text);
+  font-family: var(--qf-font-body);
+  padding-top: 4rem;
+}
+
+.qf-footer * {
+  box-sizing: border-box;
+}
+
+/* --- Champ quantique (canvas de fond) --- */
+.qf-field-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.qf-field-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Contenu --- */
+.qf-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 5rem 0.1rem 2rem;
+}
+
+.qf-columns {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 2.5rem;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.qf-col {
+  padding: 1.6rem 1.5rem;
+}
+
+.qf-col-title {
+  font-family: serif, "Fira Code Medium";
+  font-weight: 600;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #fff;
+  border-bottom-left-radius: 4px;
+  letter-spacing: 0.02em;
+  margin: 0 0 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--qf-text);
+}
+
+.qf-col p {
+  margin: 0 0 1rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--qf-text-muted);
+}
+
+.qf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.qf-list li a,
+.qf-contact-line {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--qf-text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.qf-list li a {
+  width: fit-content;
+}
+
+.qf-list li a:hover {
+  color: var(--qf-particle);
+  transform: translateX(2px);
+}
+
+.qf-list svg,
+.qf-contact-line svg {
+  flex-shrink: 0;
+  color: var(--qf-accent);
+}
+
+.qf-contact-line a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.qf-contact-line a:hover {
+  color: var(--qf-particle);
+}
+
+.qf-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.qf-cookie-btn {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--qf-text-muted);
+  font-size: 0.88rem;
+  font-family: inherit;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.qf-cookie-btn:hover {
+  color: var(--qf-particle);
+  transform: translateX(2px);
+}
+
+.qf-cookie-btn svg {
+  color: var(--qf-accent);
+}
+
+/* --- Zone des photons --- */
+.qf-photon-zone {
+  position: relative;
+  z-index: 2;
+  height: 92px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.qf-photon {
+  position: absolute;
+  top: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--qf-photon);
+  box-shadow: 0 0 2px 1px var(--qf-photon);
+}
+
+.qf-phrase {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  text-align: center;
+  font-family: var(--qf-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--qf-text-muted);
+  padding: 0 1rem;
+}
+
+.qf-phrase .qf-char {
+  opacity: 0;
+  transform: translateY(3px);
+  display: inline-block;
+  transition: opacity 0.35s ease, transform 0.35s ease, color 0.35s ease;
+}
+
+.qf-phrase .qf-char.is-lit {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--qf-photon);
+  text-shadow: 0 0 8px rgba(125, 211, 252, 0.45);
+}
+
+/* --- Barre inférieure --- */
+.qf-bottombar {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid #fff2;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.1rem 1.75rem 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 5rem;
+  align-items: center;
+  justify-content: center;
+  font-family: "Droid Sans Mono", sans-serif;
+  font-size: 0.76rem;
+  color: var(--qf-text-muted);
+}
+
+.qf-rna {
+  letter-spacing: 0.02em;
+}
+
+/* --- Responsive --- */
+@media (max-width: 860px) {
+  .qf-columns {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .qf-photon-zone {
+    height: 76px;
+  }
+
+  .qf-bottombar {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* --- Accessibilité --- */
+.qf-cookie-btn:focus-visible,
+.qf-list li a:focus-visible {
+  outline: 2px solid var(--qf-photon);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qf-phrase .qf-char {
+    transition: none;
+  }
+}
