@@ -1,5 +1,5 @@
-import {useEffect, useRef, useState, useCallback} from "react";
-import {motion, useReducedMotion} from "framer-motion";
+import {useEffect, useRef, useState} from "react";
+import {useReducedMotion} from "framer-motion";
 import {FiMapPin, FiMail, FiPhone, FiExternalLink, FiShield, FiFileText} from "react-icons/fi";
 import {FaBuilding, FaGithub, FaHandshake, FaHandSparkles, FaWalking} from "react-icons/fa";
 import "./Footer.css";
@@ -9,11 +9,6 @@ import useIsMobile from "useismobile";
 const MESSAGES = ["À TOI", "ÉTOILE", "ATOILE"];
 const MESSAGE_INTERVAL = 4500;
 const OBSERVE_THRESHOLD = 0.6;
-const PHRASE = "Ici, vos données ne sont pas absorbées. Elles restent avec vous.";
-
-/* ------------------------------------------------------------------ */
-/*  Champ quantique : canvas de fond (onde <-> particules <-> texte)  */
-/* ------------------------------------------------------------------ */
 
 let textCanvasCache = null;
 function getTextCanvas() {
@@ -35,7 +30,7 @@ function computeTextPoints(isMobile, w, h, text) {
   const canvas = getTextCanvas();
   canvas.width = Math.max(1, Math.floor(w));
   canvas.height = Math.max(1, Math.floor(h));
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   let fontSize = Math.max(20, Math.min(h * 0.44, 90));
@@ -49,7 +44,7 @@ function computeTextPoints(isMobile, w, h, text) {
     ctx.font = `700 ${fontSize}px 'VT323', monospace`;
   }
 
-  if (isMobile) ctx.fillText(text, w / 1.5, h / 1.9);
+  if (isMobile) ctx.fillText(text, w / 1.5, h / 1.8);
   else ctx.fillText(text, w / 2, h / 6);
 
   const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -84,7 +79,7 @@ function makeParticle(w, h) {
   };
 }
 
-function QuantumField({ text, observed }) {
+function QuantumField({ text, observed, invisible }) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
   const particlesRef = useRef([]);
@@ -99,10 +94,8 @@ function QuantumField({ text, observed }) {
     observedRef.current = observed;
   }, [observed]);
 
-  // Réinitialise l'expérience : dès qu'on perd le regard, le motif se
-  // disperse immédiatement en nouveaux points aléatoires.
   useEffect(() => {
-    if (observed) return;
+    if (observed || invisible) return;
     const { w, h } = sizeRef.current;
     if (!w || !h) return;
     particlesRef.current.forEach((p) => {
@@ -110,9 +103,8 @@ function QuantumField({ text, observed }) {
       p.ry = Math.random() * h;
       p.nextWanderAt = performance.now() + Math.random() * 300;
     });
-  }, [observed]);
+  }, [invisible, observed]);
 
-  // Mesure le conteneur et (re)crée la réserve de particules.
   useEffect(() => {
     const wrap = wrapRef.current;
     const canvas = canvasRef.current;
@@ -157,8 +149,8 @@ function QuantumField({ text, observed }) {
     return () => ro.disconnect();
   }, []);
 
-  // Recalcule les positions "texte" quand le message ou la taille change.
   useEffect(() => {
+    if (invisible) return;
     const { w, h } = size;
     const assign = () => {
       const pts = computeTextPoints(isMobile, w, h, text);
@@ -181,10 +173,10 @@ function QuantumField({ text, observed }) {
     } else {
       assign();
     }
-  }, [text, size.w, size.h]);
+  }, [text, size, invisible, isMobile]);
 
-  // Boucle d'animation.
   useEffect(() => {
+    if (invisible) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -210,6 +202,7 @@ function QuantumField({ text, observed }) {
     }
 
     const tick = (now) => {
+      if (invisible) return;
       const { w, h } = sizeRef.current;
       ctx.clearRect(0, 0, w, h);
 
@@ -252,7 +245,7 @@ function QuantumField({ text, observed }) {
 
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [reduceMotion]);
+  }, [reduceMotion, invisible]);
 
   return (
     <div className="qf-field-wrap" ref={wrapRef} aria-hidden="true">
@@ -261,108 +254,9 @@ function QuantumField({ text, observed }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Photons rebondissants au-dessus de la barre inférieure            */
-/* ------------------------------------------------------------------ */
-
-function PhotonBar({ phrase }) {
-  const zoneRef = useRef(null);
-  const idRef = useRef(0);
-  const revealedRef = useRef(0);
-  const [zoneHeight, setZoneHeight] = useState(92);
-  const [photons, setPhotons] = useState([]);
-  const [revealedCount, setRevealedCount] = useState(0);
-  const reduceMotion = useReducedMotion();
-
-  const FALL_DURATION = 1.9;
-  const bounceY = Math.max(20, zoneHeight - 16);
-
-  useEffect(() => {
-    const el = zoneRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver((entries) => {
-      setZoneHeight(entries[0].contentRect.height);
-    });
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  useEffect(() => {
-    revealedRef.current = revealedCount;
-    if (revealedCount >= phrase.length) {
-      const t = setTimeout(() => setRevealedCount(0), 3000);
-      return () => clearTimeout(t);
-    }
-  }, [revealedCount, phrase.length]);
-
-  const removePhoton = useCallback((id) => {
-    setPhotons((ph) => ph.filter((p) => p.id !== id));
-  }, []);
-
-  useEffect(() => {
-    if (reduceMotion) return; // pas d'animation : on garde la phrase révélée en douceur
-    const spawn = () => {
-      if (revealedRef.current >= phrase.length) return;
-      const photon = { id: idRef.current++, x: 6 + Math.random() * 88 };
-      setPhotons((ph) => [...ph, photon]);
-      window.setTimeout(() => {
-        setRevealedCount((c) => Math.min(phrase.length, c + 1));
-      }, FALL_DURATION * 500);
-    };
-    const spawnId = window.setInterval(spawn, 480);
-    return () => window.clearInterval(spawnId);
-  }, [phrase, reduceMotion]);
-
-  useEffect(() => {
-    if (!reduceMotion) return;
-    // Sans animation : révèle la phrase progressivement puis boucle, sans photons.
-    const id = window.setInterval(() => {
-      setRevealedCount((c) => (c >= phrase.length ? 0 : c + 1));
-    }, 90);
-    return () => window.clearInterval(id);
-  }, [reduceMotion, phrase.length]);
-
-  return (
-    <div className="qf-photon-zone" ref={zoneRef} aria-hidden="true">
-      {!reduceMotion &&
-        photons.map((p) => (
-          <motion.div
-            key={p.id}
-            className="qf-photon"
-            style={{ left: `${p.x}%` }}
-            initial={{ y: 0, opacity: 0 }}
-            animate={{
-              y: [0, bounceY, bounceY - 14, bounceY, bounceY - 5, bounceY],
-              opacity: [0, 1, 1, 1, 1, 0],
-            }}
-            transition={{
-              duration: FALL_DURATION,
-              times: [0, 0.5, 0.6, 0.72, 0.82, 1],
-              ease: "easeIn",
-            }}
-            onAnimationComplete={() => removePhoton(p.id)}
-          />
-        ))}
-      <p className="qf-phrase">
-        {phrase.split("").map((ch, i) => (
-          <span
-            key={i}
-            className={`qf-char${i < revealedCount ? " is-lit" : ""}`}
-          >
-            {ch === " " ? "\u00A0" : ch}
-          </span>
-        ))}
-      </p>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Footer                                                             */
-/* ------------------------------------------------------------------ */
-
 export default function Footer({ messages = MESSAGES, onOpenCookieSettings }) {
   const footerRef = useRef(null);
+  const [invisible, setInvisible] = useState(false);
   const [observed, setObserved] = useState(false);
   const [msgIndex, setMsgIndex] = useState(0);
 
@@ -373,15 +267,13 @@ export default function Footer({ messages = MESSAGES, onOpenCookieSettings }) {
       return;
     }
     const io = new IntersectionObserver(
-      ([entry]) => setObserved(entry.intersectionRatio >= OBSERVE_THRESHOLD),
+      ([entry]) => { setInvisible(entry.intersectionRatio < 0.05); setObserved(entry.intersectionRatio >= OBSERVE_THRESHOLD); },
       { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] }
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  // Le texte affiché peut changer dynamiquement : chaque changement relance
-  // l'effondrement (les cibles "texte" des particules sont recalculées).
   useEffect(() => {
     if (!observed || messages.length < 2) return;
     const id = window.setInterval(() => {
@@ -399,7 +291,7 @@ export default function Footer({ messages = MESSAGES, onOpenCookieSettings }) {
 
   return (
     <footer className="qf-footer" ref={footerRef}>
-      <QuantumField text={messages[msgIndex]} observed={observed} />
+      <QuantumField text={messages[msgIndex]} observed={observed} invisible={invisible} />
 
       <div className="qf-content">
         <div className="qf-columns">
@@ -437,7 +329,7 @@ export default function Footer({ messages = MESSAGES, onOpenCookieSettings }) {
               Exploration
             </h3>
             <ul className="qf-list">
-              <li><Link to="/home">Accueil</Link></li>
+              <li><Link to="/">Accueil</Link></li>
               <li><Link to="/apps">Nos applications</Link></li>
               <li><Link to="/news">Actualités</Link></li>
               <li><Link to="/join">Nous rejoindre</Link></li>
@@ -471,9 +363,7 @@ export default function Footer({ messages = MESSAGES, onOpenCookieSettings }) {
         </div>
       </div>
 
-      <PhotonBar phrase={PHRASE} />
-
-      <div className="qf-bottombar">
+      <div className="qf-bottom-bar">
         <span>© {year} Association Atoile - Tous droits réservés</span>
         <span className="qf-rna">RNA n° W452020481</span>
       </div>
