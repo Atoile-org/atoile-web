@@ -2,7 +2,6 @@ import {useEffect, useRef, useState} from "react";
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import CookieIcon from '@mui/icons-material/Cookie';
 import HandshakeIcon from '@mui/icons-material/Handshake';
-import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationPinIcon from '@mui/icons-material/LocationPin';
 import SecurityIcon from '@mui/icons-material/Security';
@@ -64,9 +63,6 @@ export default function Footer({ onOpenCookieSettings }) {
             </div>
             <Link to="mailto:contact@atoile.org" className="inner-tab-line" >
               <EmailIcon /> contact@atoile.org
-            </Link>
-            <Link to="tel:+33" className="inner-tab-line">
-              <PhoneIcon /> +33
             </Link>
           </div>
         </div>

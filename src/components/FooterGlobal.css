@@ -58,12 +58,13 @@
 
 .tab-paragraph {
   margin: 0;
-  font-family: "Aero Matics", serif
+  font-family: "Aero Matics", serif;
+  text-align: justify;
 }
 
 .tab-paragraph + .footer-inner-tab,
 .footer-inner-tab + .tab-paragraph {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .inner-tab-line, .footer-socials {
@@ -85,7 +86,7 @@
   width: 1.1rem;
   color: #dddddd;
   margin-right: 0.3rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 .inner-tab-line:hover svg { color: #bbbbbb; }
 
