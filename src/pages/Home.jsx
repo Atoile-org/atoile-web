@@ -5,6 +5,7 @@ import NavigationBar from "../components/NavigationBar.jsx";
 export default function HomePage({ routes }) {
     return (
         <div>
+            <title>ATOILE</title>
             <Background>
                 <HeroContent/>
             </Background>

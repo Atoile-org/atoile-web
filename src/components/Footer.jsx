@@ -14,7 +14,7 @@ import "./FooterGlobal.css";
 import {Link} from "react-router-dom";
 import QuantumField from "./FooterQuantumField.jsx";
 
-const messages = ["TOILE", "À TOI", "ÉTOILE", "ATOILE"];
+const messages = ["ATOILE", "TOILE", "À TOI", "ÉTOILE"];
 const MESSAGE_INTERVAL = 3000;
 const OBSERVE_THRESHOLD = 0.6;
 

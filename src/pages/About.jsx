@@ -11,9 +11,10 @@ export default function AboutPage({ routes }) {
 
     return (
         <div className="about-root">
+            <title>{"ATOILE - " + t("nav.about")}</title>
             <div className="about">
                 <ReactMarkdown>
-                    {t("lang-id") === "en" ? (aboutEn) : (aboutFr)}
+                    {t("global.langId") === "en" ? (aboutEn) : (aboutFr)}
                 </ReactMarkdown>
             </div>
         </div>
