@@ -97,9 +97,6 @@ export default function Footer({ onOpenCookieSettings }) {
       <div className="footer-bottom-bar">
         <span>© {year} Association Atoile</span>
         <span className="footer-rna">RNA n° W452020481</span>
-        <div className="footer-socials">
-          <Link to="https://github.com/atoile-org/" className="footer-social"><GitHubIcon /></Link>
-        </div>
       </div>
     </footer>
   );
