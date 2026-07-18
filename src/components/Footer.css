@@ -23,7 +23,6 @@
 .qf-field-wrap {
   position: absolute;
   inset: 0;
-  z-index: 0;
 }
 
 .qf-field-wrap canvas {
@@ -34,7 +33,6 @@
 
 .qf-content {
   position: relative;
-  z-index: 2;
   max-width: 1180px;
   margin: 0 auto;
   padding: 5rem 0.1rem 2rem;
@@ -147,7 +145,7 @@
 
 .qf-bottom-bar {
   position: relative;
-  z-index: 2;
+  
   border-top: 1px solid #fff2;
   width: 100%;
   margin: 0 auto;

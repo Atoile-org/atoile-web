@@ -51,7 +51,7 @@
     .hero-bg {
         background-color: black;
         filter: blur(5rem);
-        z-index: 0;
+        : 0;
     }
 
     .hero-title {
@@ -59,13 +59,13 @@
         font-weight: 700;
         font-size: 5rem;
         text-align: left;
-        z-index: 1;
+        : 1;
     }
 
     .hero-text {
         font-size: 1rem;
         text-align: left;
-        z-index: 1;
+        : 1;
     }
 }
 
@@ -88,7 +88,7 @@
     .hero-bg {
         background-color: black;
         filter: blur(5rem);
-        z-index: -1;
+        : -1;
         grid-area: 1 / 1;
     }
 
@@ -97,12 +97,12 @@
         font-weight: 700;
         font-size: 5rem;
         text-align: center;
-        z-index: 1;
+        : 1;
     }
 
     .hero-text {
         font-size: 1rem;
         text-align: center;
-        z-index: 1;
+        : 1;
     }
 }
