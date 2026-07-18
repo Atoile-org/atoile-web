@@ -82,7 +82,7 @@ export default function NavigationBar() {
       <div className="nav-wrap">
         {/* Desktop Navigation */}
         <nav className="navbar-desktop">
-          <NavTitle t={t} i18n={i18n} />
+          <p onClick={() => navigate("/")} className={"nav-title"}> ATOILE </p>
           <div className="container">
             <Link to="/">{t("nav.home")}</Link>
             <Link to="/about">{t("nav.about")}</Link>
