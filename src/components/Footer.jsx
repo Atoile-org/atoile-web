@@ -6,8 +6,8 @@ import "./Footer.css";
 import {Link} from "react-router-dom";
 import useIsMobile from "useismobile";
 
-const MESSAGES = ["À TOI", "ÉTOILE", "ATOILE"];
-const MESSAGE_INTERVAL = 4500;
+const MESSAGES = ["TOILE", "À TOI", "ÉTOILE", "ATOILE"];
+const MESSAGE_INTERVAL = 3000;
 const OBSERVE_THRESHOLD = 0.6;
 
 let textCanvasCache = null;
