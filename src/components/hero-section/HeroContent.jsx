@@ -1,5 +1,8 @@
 import "./HeroContent.css"
 
+import GitHubIcon from '@mui/icons-material/GitHub';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 export default function HeroContent() {
     return (
         <div className={"hero-wrap"}>
@@ -13,10 +16,10 @@ export default function HeroContent() {
                 </p>
                 <div className={"hero-action-row"}>
                     <button className={"hero-button"}>
-                        About us
+                        About us <ArrowForwardIcon />
                     </button>
                     <a className={"hero-button"} href={"https://github.com/Atoile-org"}>
-                        Github
+                        <GitHubIcon /> Github
                     </a>
                 </div>
             </div>

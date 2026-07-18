@@ -25,6 +25,8 @@
     color: var(--color-button-text);
     cursor: pointer;
     text-decoration: none;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .hero-button:hover {
