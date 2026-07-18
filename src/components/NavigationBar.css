@@ -103,20 +103,24 @@
   z-index: 10;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .navbar-desktop > div {
   gap: 2rem;
   display: flex;
   margin-right: 5rem;
 }
+
 .navbar-desktop > div > a {
   text-decoration: none;
   color: white;
   font-weight: 500;
   transition: opacity 0.2s ease;
 }
+
 .navbar-desktop > div > a:hover {
   opacity: 0.8;
 }
+
 @media (max-width: 800px) {
   .navbar-desktop {
     visibility: hidden;
@@ -127,11 +131,13 @@
 .navbar-mobile {
   padding: 0 1.5rem;
 }
+
 .navbar-mobile > .nav-title-wrap {
   margin: 0;
   font-weight: bold;
   font-size: 1.8rem;
 }
+
 @media (min-width: 800px) {
   .navbar-mobile {
     visibility: hidden;

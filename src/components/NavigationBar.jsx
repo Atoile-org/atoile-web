@@ -1,11 +1,10 @@
 import "./NavigationBar.css"
-import {useState, useRef, useEffect} from "react";
-import {Link} from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {AnimatePresence, motion} from "framer-motion";
 import {FiChevronDown} from "react-icons/fi";
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 
 function NavTitle({t, i18n}) {
   const [open, setOpen] = useState(false);
@@ -76,6 +75,8 @@ export default function NavigationBar() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="nav-wrap">
@@ -92,9 +93,9 @@ export default function NavigationBar() {
 
         {/* Mobile Navigation */}
         <nav className="navbar-mobile">
-          <NavTitle t={t} i18n={i18n} />
+          <NavTitle onClick={() => navigate("/")} t={t} i18n={i18n} />
           <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
-            {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            <MenuIcon />
           </button>
         </nav>
       </div>
