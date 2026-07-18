@@ -70,7 +70,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.3rem;
   font-family: 'Josefin Sans Variable', sans-serif;
   font-size: 0.9rem;
   color: #ffffff;
@@ -82,16 +81,18 @@
 .inner-tab-line:hover { color: #aaaaaa; }
 
 .inner-tab-line svg {
+  flex-shrink: 0;
   width: 1rem;
   color: #dddddd;
   margin-right: 0.3rem;
-  display: flex;
-  justify-content: center;
+  margin-bottom: 0.2rem;
 }
+.inner-tab-line:hover svg { color: #bbbbbb; }
 
 .inner-tab-line > .ext-icon {
   width: 0.7rem;
-  translate: -0.25rem -0.25rem;
+  margin-bottom: 0;
+  translate: 0 -0.25rem;
 }
 .inner-tab-line:hover > .ext-icon { color: #aaaaaa; }
 
@@ -108,7 +109,7 @@
   height: 2rem;
 }
 
-.footer-social, .footer-social svg {
+.footer-social {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,4 +118,5 @@
 .footer-social svg {
   color: #aaaaaa;
   width: 0.8rem;
+  margin-bottom: 0.2rem;
 }
