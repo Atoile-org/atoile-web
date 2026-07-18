@@ -22,7 +22,4 @@
 .hero-video-content {
   position: relative;
   min-height: 100vh;
-  mix-blend-mode: difference;
-  color: white;
-  isolation: isolate;
 }

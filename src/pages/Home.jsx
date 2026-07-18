@@ -1,9 +1,10 @@
 import Background from "../components/Background.jsx";
+import HeroContent from "../components/hero-section/HeroContent.jsx";
 
 export default function HomePage({ routes }) {
     return (
         <Background>
-            <h1>Home page</h1>
+            <HeroContent/>
         </Background>
     )
 }
