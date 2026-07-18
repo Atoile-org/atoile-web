@@ -12,3 +12,7 @@ h2 {
   color: white;
   font-style: italic;
 }
+
+html {
+  background: #000;
+}

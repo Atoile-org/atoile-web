@@ -15,14 +15,14 @@ export default function HeroContent() {
                 <h1 className={"hero-title"}>ATOILE</h1>
                 <p className={"hero-text"}>
                     Your device. Your rules. Your software. <br/>
-                    We advocate for <span className={"hero-highlight"}>real ownership</span>: unlocked bootloaders, open OS choice, the right to repair. We also build free, open-source tools so you always have <span className={"hero-higlight"}>a way out of closed ecosystems</span>.
+                    We advocate for <span className={"hero-highlight"}>real ownership</span>: unlocked bootloaders, open OS choice, the right to repair. We also build free, open-source tools so you always have <span className={"hero-highlight"}>a way out of closed ecosystems</span>.
                 </p>
                 <div className={"hero-action-row"}>
                     <button className={"hero-button"} onClick={() => navigate("about")} >
                         About us <ArrowForwardIcon />
                     </button>
                     <a className={"hero-button"} href={"https://github.com/Atoile-org"}>
-                        <GitHubIcon /> Github
+                        <GitHubIcon /> GitHub
                     </a>
                 </div>
             </div>
