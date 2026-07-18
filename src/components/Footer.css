@@ -6,16 +6,13 @@
   --qf-accent: #a78bfa;
   --qf-text: #e7e9ee;
   --qf-text-muted: #aaa;
-  --qf-font-display: "Space Grotesk", "Segoe UI", sans-serif;
-  --qf-font-body: "Inter", "Segoe UI", sans-serif;
-  --qf-font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   position: relative;
   isolation: isolate;
   overflow: hidden;
   background: var(--qf-bg);
   color: var(--qf-text);
-  font-family: var(--qf-font-body);
+  font-family: "Inter", "Segoe UI", sans-serif;
   padding-top: 4rem;
 }
 
@@ -23,7 +20,6 @@
   box-sizing: border-box;
 }
 
-/* --- Champ quantique (canvas de fond) --- */
 .qf-field-wrap {
   position: absolute;
   inset: 0;
@@ -36,7 +32,6 @@
   height: 100%;
 }
 
-/* --- Contenu --- */
 .qf-content {
   position: relative;
   z-index: 2;
@@ -73,13 +68,15 @@
 }
 
 .qf-col p {
+  font-family: 'Aero Matics', serif;
   margin: 0 0 1rem;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   line-height: 1.55;
   color: var(--qf-text-muted);
 }
 
 .qf-list {
+  font-family: 'Josefin Sans Variable', sans-serif;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -92,7 +89,6 @@
 .qf-contact-line {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
   color: var(--qf-text-muted);
   text-decoration: none;
   font-size: 0.88rem;
@@ -110,9 +106,13 @@
 
 .qf-list svg,
 .qf-contact-line svg {
+  margin-right: 0.6rem;
   flex-shrink: 0;
   color: var(--qf-accent);
 }
+
+.qf-list svg { margin-bottom: 3px; }
+.qf-list svg.qf-ext { margin-bottom: 9px; }
 
 .qf-contact-line a {
   color: inherit;
@@ -134,7 +134,6 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
   color: var(--qf-text-muted);
   font-size: 0.88rem;
   font-family: inherit;
@@ -150,57 +149,7 @@
   color: var(--qf-accent);
 }
 
-/* --- Zone des photons --- */
-.qf-photon-zone {
-  position: relative;
-  z-index: 2;
-  height: 92px;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 1.75rem;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.qf-photon {
-  position: absolute;
-  top: 0;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--qf-photon);
-  box-shadow: 0 0 2px 1px var(--qf-photon);
-}
-
-.qf-phrase {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 6px;
-  text-align: center;
-  font-family: var(--qf-font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
-  color: var(--qf-text-muted);
-  padding: 0 1rem;
-}
-
-.qf-phrase .qf-char {
-  opacity: 0;
-  transform: translateY(3px);
-  display: inline-block;
-  transition: opacity 0.35s ease, transform 0.35s ease, color 0.35s ease;
-}
-
-.qf-phrase .qf-char.is-lit {
-  opacity: 1;
-  transform: translateY(0);
-  color: var(--qf-photon);
-  text-shadow: 0 0 8px rgba(125, 211, 252, 0.45);
-}
-
-/* --- Barre inférieure --- */
-.qf-bottombar {
+.qf-bottom-bar {
   position: relative;
   z-index: 2;
   border-top: 1px solid #fff2;
@@ -213,7 +162,7 @@
   align-items: center;
   justify-content: center;
   font-family: "Droid Sans Mono", sans-serif;
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   color: var(--qf-text-muted);
 }
 
@@ -221,7 +170,16 @@
   letter-spacing: 0.02em;
 }
 
-/* --- Responsive --- */
+.qf-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.qf-socials svg { color: var(--qf-text-muted); }
+
 @media (max-width: 860px) {
   .qf-columns {
     grid-template-columns: 1fr;
@@ -232,13 +190,12 @@
     height: 76px;
   }
 
-  .qf-bottombar {
+  .qf-bottom-bar {
     justify-content: center;
     text-align: center;
   }
 }
 
-/* --- Accessibilité --- */
 .qf-cookie-btn:focus-visible,
 .qf-list li a:focus-visible {
   outline: 2px solid var(--qf-photon);

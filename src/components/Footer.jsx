@@ -336,36 +336,33 @@ export default function Footer({ messages = MESSAGES, onOpenCookieSettings }) {
               <li><Link to="/contact">Nous contacter</Link></li>
             </ul>
           </div>
-
           <div className="qf-col">
             <h3 className="qf-col-title">
-              <FaHandSparkles size={20} />
-              Transparence
+              <FaHandSparkles size={20} /> Transparence
             </h3>
             <ul className="qf-list">
               <li><Link to="/privacy"><FaHandshake size={17} /> Politique de confidentialité</Link></li>
               <li>
                 <button type="button" className="qf-cookie-btn" onClick={handleCookieSettings} >
-                  <FiShield size={17} />
-                  Cookies &amp; stockage local
+                  <FiShield size={17} /> Cookies &amp; stockage local
                 </button>
               </li>
               <li><Link to="/legal-notices"><FiFileText size={17} />Mentions légales</Link></li>
               <li>
                 <a href="https://github.com/atoile-org/" target="_blank" rel="noopener noreferrer">
-                  <FaGithub size={17} />
-                  Code source
-                  <FiExternalLink size={15} />
+                  <FaGithub size={17} /> Code source <FiExternalLink size={12} className="qf-ext" />
                 </a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-
       <div className="qf-bottom-bar">
-        <span>© {year} Association Atoile - Tous droits réservés</span>
+        <span>© {year} Association Atoile</span>
         <span className="qf-rna">RNA n° W452020481</span>
+        <div className="qf-socials">
+          <a href="https://github.com/atoile-org/" target="_blank" rel="noopener noreferrer"><FaGithub size="0.8rem" /></a>
+        </div>
       </div>
     </footer>
   );
