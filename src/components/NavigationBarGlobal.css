@@ -16,6 +16,8 @@
 }
 
 .navbar-selector-arrow {
+  background-color: transparent;
+  border: none;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -48,7 +50,9 @@
   list-style: none;
 }
 
-.navbar-selector-dropdown li {
+.navbar-selector-dropdown > .li {
+  background-color: transparent;
+  border: none;
   width: 100%;
   padding: 0.2rem;
   word-spacing: 0.2rem;
@@ -58,16 +62,16 @@
   font-family: "Aero Matics Bold", sans-serif;
 }
 
-.navbar-selector-dropdown li:is(:hover, .active) {
+.navbar-selector-dropdown > .li:is(:hover, .active) {
   background-color: #fff4;
 }
 
-.navbar-selector-dropdown li:is(:hover, .active):has(+ li:is(:hover, .active)) {
+.navbar-selector-dropdown > .li:is(:hover, .active):has(+ .li:is(:hover, .active)) {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.navbar-selector-dropdown li:is(:hover, .active) + li:is(:hover, .active) {
+.navbar-selector-dropdown > .li:is(:hover, .active) + .li:is(:hover, .active) {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }

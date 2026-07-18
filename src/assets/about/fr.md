@@ -4,7 +4,7 @@
 
 Nous sommes un collectif qui défend un principe simple : quand vous achetez un appareil, il vous appartient. Vraiment. Pas à moitié, pas sous conditions, pas tant que vous acceptez de rester enfermé dans l'écosystème de son fabricant.
 
-Aujourd'hui, cette idée pourtant basique est devenue radicale. Bootloaders verrouillés, pièces détachées siphonnées par du "parts pairing", mises à jour qui bloquent des fonctionnalités après un an d'usage, prix qui changent selon votre téléphone ou votre localisation, capteurs qui remontent des données sans que vous le sachiez vraiment. On a normalisé la dépossession, et on a décidé de résister.
+Aujourd'hui, cette idée pourtant basique est devenue radicale. Bootloaders verrouillés, pièces détachées siphonnées par du "parts pairing", mises à jour qui bloquent des fonctionnalités après un an d'usage, prix qui changent selon votre téléphone ou votre localisation, capteurs qui remontent des données sans que vous le sachiez vraiment. La dépossession nous a été normalisée, c'est pourquoi nous avons décidé de résister.
 
 On agit sur trois fronts : on **milite** pour faire évoluer la loi et les pratiques, on **informe** sur ce qui se passe réellement, et on **construit** des outils libres pour que chacun ait une porte de sortie, dès aujourd'hui, sans attendre que la loi change.
 

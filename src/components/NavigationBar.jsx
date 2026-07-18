@@ -24,9 +24,9 @@ function NavbarSelector({i18n, isSelectorOpen, setIsSelectorOpen}) {
       {isSelectorOpen && (
         <ul className="navbar-selector-dropdown" role="listbox">
           {LANGUAGES.map((l) => (
-            <li key={l.code} className={l.code === currentLng.code ? "active" : ""} role="button" onClick={() => selectLng(l.code)}>
+            <button key={l.code} className={l.code === currentLng.code ? "li active" : "li"} onClick={() => selectLng(l.code)}>
               {l.flag} {l.label}
-            </li>
+            </button>
           ))}
         </ul>
       )}
@@ -50,9 +50,9 @@ export default function NavigationBar() {
       <nav className="navbar">
         <div className="navbar-left">
           <p onClick={() => navigate("/")} className="navbar-title"> ATOILE </p>
-          <div className="navbar-selector-arrow" onClick={toggleSelector} >
+          <button className="navbar-selector-arrow" onClick={toggleSelector} >
             <ExpandMoreIcon style={isSelectorOpen ? {transform: "rotate(180deg)"} : {}} />
-          </div>
+          </button>
           <NavbarSelector i18n={i18n} isSelectorOpen={isSelectorOpen} setIsSelectorOpen={setIsSelectorOpen} />
         </div>
         <div className="navbar-right-desktop">

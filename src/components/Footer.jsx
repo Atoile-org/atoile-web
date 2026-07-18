@@ -84,9 +84,9 @@ export default function Footer({ onOpenCookieSettings }) {
           <h3 className="tab-title"><SecurityIcon /> Transparence</h3>
           <div className="footer-inner-tab">
             <Link to="/privacy" className="inner-tab-line"><HandshakeIcon /> Politique de confidentialité</Link>
-            <div role="button" className="inner-tab-line" onClick={onOpenCookieSettings} >
+            <button className="inner-tab-line" onClick={onOpenCookieSettings} >
               <CookieIcon /> Cookies &amp; stockage local
-            </div>
+            </button>
             <Link to="/legal-notices" className="inner-tab-line"><DescriptionIcon />Mentions légales</Link>
             <Link to="https://github.com/atoile-org/" className="inner-tab-line">
               <GitHubIcon /> Code source <OpenInNewIcon className="ext-icon" />
@@ -98,7 +98,7 @@ export default function Footer({ onOpenCookieSettings }) {
         <span>© {year} Association Atoile</span>
         <span className="footer-rna">RNA n° W452020481</span>
         <div className="footer-socials">
-          <Link to="https://github.com/atoile-org/"><GitHubIcon /></Link>
+          <Link to="https://github.com/atoile-org/" className="footer-social"><GitHubIcon /></Link>
         </div>
       </div>
     </footer>

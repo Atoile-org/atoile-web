@@ -4,7 +4,7 @@
 
 We're a collective defending a simple principle: when you buy a device, it's yours. Really yours. Not half-yours, not conditionally yours, not yours only as long as you stay locked inside the manufacturer's ecosystem.
 
-That basic idea has somehow become radical. Locked bootloaders, spare parts crippled by "parts pairing," updates that strip away features after a year of use, prices that shift depending on your phone or your location, sensors quietly reporting data you never agreed to share. Dispossession has been normalized, and we've decided to push back.
+That basic idea has somehow become radical. Locked bootloaders, spare parts crippled by "parts pairing," updates that strip away features after a year of use, prices that shift depending on your phone or your location, sensors quietly reporting data you never agreed to share. Dispossession has been normalized, that's why we've decided to push back.
 
 We work on three fronts: we **advocate** to change laws and industry practice, we **inform** people about what's actually happening, and we **build** free tools so everyone has a way out, starting now, without waiting for the law to catch up.
 
