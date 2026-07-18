@@ -1,69 +1,35 @@
-import "./NavigationBar.css"
-import {useEffect, useRef, useState} from "react";
+import "./NavigationBarGlobal.css";
+import "./NavigationBarMobile.css";
+import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import {AnimatePresence, motion} from "framer-motion";
-import {FiChevronDown} from "react-icons/fi";
-import MenuIcon from '@mui/icons-material/Menu';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MenuIcon from "@mui/icons-material/Menu";
 
-function NavTitle({t, i18n}) {
-  const [open, setOpen] = useState(false);
-  const wrapRef = useRef(null);
-
+function NavbarSelector({i18n, isSelectorOpen, setIsSelectorOpen}) {
   const LANGUAGES = [
-    { code: "fr", label: "Français", country: "fr" },
-    { code: "en", label: "English",  country: "gb" }
+    { code: "fr", label: "Français", flag: "🇫🇷" },
+    { code: "en", label: "English",  flag: "🇬🇧" }
   ];
 
-  const flag = (country) => `https://flagcdn.com/w160/${country}.png`;
   const currentLng = LANGUAGES.find((l) => l.code === i18n.language) ?? LANGUAGES[0];
 
   const selectLng = (code) => {
     i18n.changeLanguage(code).then((T) => console.log(T("choose.language")));
-    setOpen(false);
+    setIsSelectorOpen(false);
   };
 
-  useEffect(() => {
-    const onClickOutside = (e) => {
-      if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false);
-    };
-    document.addEventListener("mousedown", onClickOutside);
-    return () => document.removeEventListener("mousedown", onClickOutside);
-  }, []);
-
   return (
-    <div className="nav-title-wrap" ref={wrapRef}>
-      <button
-        type="button" className="nav-title-btn"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open} aria-haspopup="listbox"
-      >
-        <AnimatePresence mode="wait">
-          <motion.span key={currentLng.code} className="nav-title-flag" style={{ backgroundImage: `url(${flag(currentLng.country)})` }}
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
-          >
-            {t("global.title")}
-          </motion.span>
-        </AnimatePresence>
-        <FiChevronDown className={`nav-arrow${open ? " is-open" : ""}`} size={14} />
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.ul
-            className="nav-lang-dropdown" role="listbox" initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.2 }}
-          >
-            {LANGUAGES.map((l) => (
-              <li key={l.code} className={l.code === currentLng.code ? "is-active" : ""}>
-                <button type="button" onClick={() => selectLng(l.code)} >
-                  <img src={flag(l.country)} alt="" width={20} />
-                  {l.label}
-                </button>
-              </li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
+    <div className="navbar-selector">
+      {isSelectorOpen && (
+        <ul className="navbar-selector-dropdown" role="listbox">
+          {LANGUAGES.map((l) => (
+            <li key={l.code} className={l.code === currentLng.code ? "active" : ""} role="button" onClick={() => selectLng(l.code)}>
+              {l.flag} {l.label}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
@@ -71,7 +37,9 @@ function NavTitle({t, i18n}) {
 export default function NavigationBar() {
   const {t, i18n} = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSelectorOpen, setIsSelectorOpen] = useState(false);
 
+  const toggleSelector = () => setIsSelectorOpen(!isSelectorOpen);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -79,26 +47,26 @@ export default function NavigationBar() {
 
   return (
     <>
-      <div className="nav-wrap">
-        {/* Desktop Navigation */}
-        <nav className="navbar-desktop">
-          <p onClick={() => navigate("/")} className={"nav-title"}> ATOILE </p>
-          <div className="container">
-            <Link to="/">{t("nav.home")}</Link>
-            <Link to="/about">{t("nav.about")}</Link>
-            <Link to="/members">{"Members"}</Link>
-            <a>{"Social ↓"}</a> {/* TODO: Make this unfold with a link to all social medias */}
+      <nav className="navbar">
+        <div className="navbar-left">
+          <p onClick={() => navigate("/")} className="navbar-title"> ATOILE </p>
+          <div className="navbar-selector-arrow" onClick={toggleSelector} >
+            <ExpandMoreIcon style={isSelectorOpen ? {transform: "rotate(180deg)"} : {}} />
           </div>
-        </nav>
-
-        {/* Mobile Navigation */}
-        <nav className="navbar-mobile">
-          <NavTitle onClick={() => navigate("/")} t={t} i18n={i18n} />
+          <NavbarSelector i18n={i18n} isSelectorOpen={isSelectorOpen} setIsSelectorOpen={setIsSelectorOpen} />
+        </div>
+        <div className="navbar-right-desktop">
+          <Link to="/">{t("nav.home")}</Link>
+          <Link to="/about">{t("nav.about")}</Link>
+          <Link to="/members">{"Members"}</Link>
+          <a>{"Social ↓"}</a> {/* TODO: Make this unfold with a link to all social medias */}
+        </div>
+        <div className="navbar-right-mobile">
           <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
             <MenuIcon />
           </button>
-        </nav>
-      </div>
+        </div>
+      </nav>
 
       {/* Mobile Side Menu Drawer */}
       <div className={`mobile-side-menu ${isMenuOpen ? 'open' : ''}`}>
