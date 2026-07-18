@@ -56,7 +56,7 @@ export default function Footer({ onOpenCookieSettings }) {
           <p className="tab-paragraph">
             Atoile est une association loi 1901 dédiée au soutient du droit à la réparation et
             la propriété numérique des terminaux, tout en développant et diffusant gratuitement
-            des logiciels libres et open-source au service du grand public.
+            des logiciels libres et open-source.
           </p>
           <div className="footer-inner-tab">
             <div className="inner-tab-line">
