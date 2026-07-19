@@ -9,6 +9,8 @@ import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import Groups2Icon from '@mui/icons-material/Groups2';
 import DescriptionIcon from '@mui/icons-material/Description';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 import "./FooterGlobal.css";
 import {Link} from "react-router-dom";
 import QuantumField from "./FooterQuantumField.jsx";
@@ -91,8 +93,8 @@ export default function Footer({ onOpenCookieSettings }) {
         </div>
       </div>
       <div className="footer-bottom-bar">
-        <span>© {year} Association Atoile</span>
-        <span className="footer-rna">RNA n° W452020481</span>
+        <span className="bottom-bar-text"><CopyrightIcon /> {year} Association Atoile</span>
+        <button style={{paddingLeft: "0.2rem"}} onClick={() => navigator?.clipboard?.writeText("W452020481")} className="bottom-bar-button">RNA n° W452020481 <ContentCopyIcon /></button>
       </div>
     </footer>
   );

@@ -103,5 +103,24 @@
   align-items: center;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  font-size: 0.8rem;
 }
+
+.footer-bottom-bar > .bottom-bar-button,
+.footer-bottom-bar > .bottom-bar-text {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  font-family: "Droid Sans Mono", monospace;
+}
+
+.footer-bottom-bar > .bottom-bar-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.footer-bottom-bar > .bottom-bar-button > svg, .footer-bottom-bar > .bottom-bar-text > svg { height: 0.6rem; }
