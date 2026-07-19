@@ -1,0 +1,117 @@
+.outer-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 998;
+}
+
+.atoile-modal {
+  position: relative;
+  z-index: 999;
+  max-width: 90%;
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+.atoile-modal > * {
+  padding: 0 2rem;
+}
+
+.atoile-blur-modal {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: #11111188;
+  border: 1px solid #aaaaaa;
+  border-radius: 0.5rem;
+}
+
+.atoile-classic-modal {
+  background-color: #111111ee;
+}
+
+.atoile-modal > .modal-title {
+  text-align: center;
+  font-style: normal;
+  font-size: 2rem;
+  font-family: "Aero Matics Display", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.atoile-modal > .modal-title > svg {
+  width: 2rem;
+  margin-top: 0.2rem;
+}
+
+.atoile-modal > .modal-info {
+  text-align: justify;
+  font-family: "Aero Matics", serif;
+  font-size: 1rem;
+}
+
+.atoile-modal > .modal-vars {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 10rem;
+  align-items: flex-start;
+}
+
+.atoile-modal > .modal-vars > .modal-var {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.3rem;
+}
+.atoile-modal > .modal-vars > .modal-var > svg {
+  width: 1.2rem;
+}
+
+.atoile-modal > .modal-footer {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.atoile-modal > .modal-footer > .atoile-svg {
+  width: 3rem;
+}
+
+.atoile-modal > .modal-footer > .modal-quit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000000;
+  border-bottom: none;
+  border-right: none;
+  border-top-left-radius: 0.5rem;
+  background-color: #444444;
+}
+.atoile-modal > .modal-footer > .modal-quit:hover { filter: brightness(0.7); }
+.atoile-modal > .modal-footer > .modal-quit > svg {
+  width: 1.1rem;
+}
+
+@media (max-width: 800px) {
+  .atoile-modal > .modal-title > svg {
+    height: 2.2rem;
+  }
+  .atoile-modal > .modal-title > svg:first-child { transform: translateX(1rem) rotateZ(-25deg); }
+  .atoile-modal > .modal-title > svg:last-child { transform: translateX(-1rem) rotateZ(25deg); }
+}

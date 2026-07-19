@@ -1,0 +1,10 @@
+.storage-modal {
+  width: 50%;
+  height: fit-content;
+}
+
+@media (max-width: 800px) {
+  .storage-modal {
+    width: 90%;
+  }
+}

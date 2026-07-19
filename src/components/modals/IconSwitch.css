@@ -1,0 +1,19 @@
+.icon-switch {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.icon-switch:hover { filter: brightness(0.8); }
+
+.icon-switch[data-on = "true"] {
+  color: #bbbbbb;
+}
+
+.icon-switch[data-on = "false"] {
+  color: #555555;
+}
