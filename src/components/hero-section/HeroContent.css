@@ -56,6 +56,7 @@
         font-family: 'Aero Matics Display Bold', serif;
         font-weight: 700;
         font-size: 5rem;
+        text-transform: uppercase;
         text-align: left;
         z-index: 1;
     }
