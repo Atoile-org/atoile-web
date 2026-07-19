@@ -9,11 +9,10 @@
 }
 
 .icon-switch:hover { filter: brightness(0.8); }
-
-.icon-switch[data-on = "true"] {
-  color: #bbbbbb;
+.icon-switch:disabled {
+  color: #333333 !important;
+  cursor: not-allowed;
 }
 
-.icon-switch[data-on = "false"] {
-  color: #555555;
-}
+.icon-switch[data-on = "true"] { color: #bbbbbb; }
+.icon-switch[data-on = "false"] { color: #555555; }

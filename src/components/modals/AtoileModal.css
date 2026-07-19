@@ -17,7 +17,6 @@
   max-height: 80%;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   overflow: hidden;
 }
 
@@ -48,7 +47,7 @@
   justify-content: center;
   gap: 0.4rem;
   margin-top: 2rem;
-  margin-bottom: 0;
+  margin-bottom: 2rem;
 }
 
 .atoile-modal > .modal-title > svg {
@@ -60,27 +59,50 @@
   text-align: justify;
   font-family: "Aero Matics", serif;
   font-size: 1rem;
+  margin-bottom: 2rem;
 }
 
-.atoile-modal > .modal-vars {
+.atoile-modal > .modal-vars,
+.atoile-modal > .modal-actions {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem 10rem;
   align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.atoile-modal > .modal-actions {
+  gap: 1rem 3rem;
+  margin-bottom: 0;
 }
 
-.atoile-modal > .modal-vars > .modal-var {
+.atoile-modal > .modal-vars > .modal-var,
+.atoile-modal > .modal-actions > .modal-action {
   display: flex;
   flex-direction: row;
   align-items: center;
   font-family: "Fira Code Medium", serif;
   font-size: 1.4rem;
 }
-.atoile-modal > .modal-vars > .modal-var > svg {
-  width: 1.2rem;
+.atoile-modal > .modal-actions > .modal-action {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.4rem;
+  gap: 0.4rem;
+  font-size: 1.2rem;
+  background-color: #66666666;
 }
+.atoile-modal > .modal-actions > .modal-action:hover { filter: brightness(0.8); }
+.atoile-modal > .modal-actions > .modal-action:disabled {
+  filter: brightness(0.5);
+  cursor: not-allowed;
+}
+
+.atoile-modal > .modal-vars > .modal-var:has(> .icon-switch:disabled) { color: #333333; }
+
+.atoile-modal > .modal-vars > .modal-var > svg { width: 1.2rem; }
+.atoile-modal > .modal-actions > .modal-action > svg { width: 1rem; }
 
 .atoile-modal > .modal-footer {
   position: relative;
@@ -91,28 +113,34 @@
   width: 3rem;
 }
 
-.atoile-modal > .modal-footer > .modal-quit {
+.atoile-modal > .modal-footer > button {
   position: absolute;
-  right: 0;
   bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid #aaaaaa;
   border-bottom: none;
-  border-right: none;
-  border-top-left-radius: 0.5rem;
   background-color: #444444;
 }
-.atoile-modal > .modal-footer > .modal-quit:hover { filter: brightness(0.7); }
-.atoile-modal > .modal-footer > .modal-quit > svg {
-  width: 1.1rem;
+.atoile-modal > .modal-footer > .modal-change-page {
+  left: 0;
+  border-left: none;
+  border-top-right-radius: 0.5rem;
 }
+.atoile-modal > .modal-footer > .modal-quit {
+  right: 0;
+  border-right: none;
+  border-top-left-radius: 0.5rem;
+}
+
+.atoile-modal > .modal-footer > button:hover { filter: brightness(0.7); }
+.atoile-modal > .modal-footer > button > svg { width: 1.1rem; }
 
 @media (max-width: 800px) {
   .atoile-modal > .modal-title > svg {
     height: 2.2rem;
   }
-  .atoile-modal > .modal-title > svg:first-child { transform: translateX(1rem) rotateZ(-25deg); }
-  .atoile-modal > .modal-title > svg:last-child { transform: translateX(-1rem) rotateZ(25deg); }
+  .atoile-modal > .modal-title > svg:first-child { transform: translateX(0.5rem); }
+  .atoile-modal > .modal-title > svg:last-child { transform: translateX(-0.5rem); }
 }

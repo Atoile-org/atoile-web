@@ -5,14 +5,14 @@ import {useState} from "react";
 import StorageModal from "../components/modals/StorageModal.jsx";
 
 export default function Root() {
-  const [isStorageModalOpen, setIsStorageModalOpen] = useState(false);
+  const [isStorageModalOpen, setStorageModalOpen] = useState(false);
 
   return (
     <div>
       <NavigationBar/>
-      <StorageModal isStorageModalOpen={isStorageModalOpen} setIsStorageModalOpen={setIsStorageModalOpen} />
+      <StorageModal isStorageModalOpen={isStorageModalOpen} setStorageModalOpen={setStorageModalOpen} />
       <Outlet />
-      <Footer onOpenCookieSettings={() => setIsStorageModalOpen(!isStorageModalOpen)} />
+      <Footer onOpenCookieSettings={() => setStorageModalOpen(!isStorageModalOpen)} />
     </div>
   )
 }

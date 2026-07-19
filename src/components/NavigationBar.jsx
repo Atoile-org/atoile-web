@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MenuIcon from "@mui/icons-material/Menu";
 
-function NavbarSelector({i18n, isSelectorOpen, setIsSelectorOpen}) {
+function NavbarSelector({i18n, isSelectorOpen, setSelectorOpen}) {
   const LANGUAGES = [
     { code: "fr", label: "Français", flag: "🇫🇷" },
     { code: "en", label: "English",  flag: "🇬🇧" }
@@ -16,7 +16,7 @@ function NavbarSelector({i18n, isSelectorOpen, setIsSelectorOpen}) {
 
   const selectLng = (code) => {
     i18n.changeLanguage(code).then((T) => console.log(T("choose.language")));
-    setIsSelectorOpen(false);
+    setSelectorOpen(false);
   };
 
   return (
@@ -36,12 +36,12 @@ function NavbarSelector({i18n, isSelectorOpen, setIsSelectorOpen}) {
 
 export default function NavigationBar() {
   const {t, i18n} = useTranslation();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSelectorOpen, setIsSelectorOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isSelectorOpen, setSelectorOpen] = useState(false);
 
-  const toggleSelector = () => setIsSelectorOpen(!isSelectorOpen);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const closeMenu = () => setIsMenuOpen(false);
+  const toggleSelector = () => setSelectorOpen(!isSelectorOpen);
+  const toggleMenu = () => setMenuOpen(!isMenuOpen);
+  const closeMenu = () => setMenuOpen(false);
 
   const navigate = useNavigate();
 
@@ -53,12 +53,12 @@ export default function NavigationBar() {
           <button className="navbar-selector-arrow" onClick={toggleSelector} >
             <ExpandMoreIcon style={isSelectorOpen ? {transform: "rotate(180deg)"} : {}} />
           </button>
-          <NavbarSelector i18n={i18n} isSelectorOpen={isSelectorOpen} setIsSelectorOpen={setIsSelectorOpen} />
+          <NavbarSelector i18n={i18n} isSelectorOpen={isSelectorOpen} setSelectorOpen={setSelectorOpen} />
         </div>
         <div className="navbar-right-desktop">
           <Link to="/">{t("nav.home")}</Link>
           <Link to="/about">{t("nav.about")}</Link>
-          <Link to="/members">{"Members"}</Link>
+          <Link to="/members">{t("nav.members")}</Link>
           <a>{"Social ↓"}</a> {/* TODO: Make this unfold with a link to all social medias */}
         </div>
         <div className="navbar-right-mobile">
