@@ -75,7 +75,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 1.3rem;
+  font-family: "Fira Code Medium", serif;
+  font-size: 1.4rem;
 }
 .atoile-modal > .modal-vars > .modal-var > svg {
   width: 1.2rem;
