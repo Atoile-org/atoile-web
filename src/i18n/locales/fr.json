@@ -1,0 +1,47 @@
+{
+  "global.langId": "fr",
+  "global.title": "Atoile",
+  "global.pre-title": "ATOILE - ",
+
+  "nav.home": "Accueil",
+  "nav.about": "À propos",
+  "nav.news": "Actualités",
+  "nav.members": "Membres",
+  "nav.apps": "Nos applications",
+  "nav.join-us": "Nous rejoindre",
+  "nav.contact-us": "Nous contacter",
+  "nav.privacy-policy": "Politique de confidentialité",
+  "nav.legal-notices": "Mentions légales",
+  "nav.source-code": "Code source",
+
+  "action.open-in-new": "Visionner",
+  "action.download": "Télécharger",
+  "action.delete": "Supprimer",
+
+  "hero.text.line": "Votre appareil. Vos règles. Votre logiciel.",
+  "hero.text.1": "Nous défendons",
+  "hero.text.2": "une réelle autonomie",
+  "hero.text.3": " : déverrouillage des bootloaders, liberté de choisir le système d'exploitation, droit à la réparation. Nous développons également des outils libres et open source afin que vous disposiez toujours",
+  "hero.text.4": "d'un moyen de sortir des écosystèmes fermés",
+  "hero.about-us": "Qui sommes-nous ?",
+
+  "modal.storage.title": "Cookies et Stockage local",
+  "modal.storage.info": "Nous n'utilisons aucun cookies. Tous les systèmes de stockage local sont désactivés par défaut. Vos données ne quittent jamais votre appareil.",
+  "modal.storage.ls": "Stockage local",
+  "modal.storage.ls-empty": "Votre stockage local est vide.",
+  "modal.storage.ls-single": "Votre stockage local contient un seul élément.",
+  "modal.storage.ls-multiple": "Votre stockage local contient {{length}} éléments.",
+  "modal.storage.cache-info": "Vous pouvez gérer le cache depuis votre navigateur.",
+
+  "footer.association": "Association",
+  "footer.about": "Atoile est une association loi 1901 dédiée au soutient du droit à la réparation et la propriété numérique des terminaux, tout en développant et diffusant gratuitement des logiciels libres et open-source.",
+  "footer.discover": "Exploration",
+  "footer.transparency": "Transparence",
+  "footer.storage": "Cookies & stockage local",
+  "footer.bottom.text": "{{year}} Association Atoile",
+  "footer.bottom.rna": "RNA",
+
+  "console.warn.ls-blocked-attempt": "La tentative de sauvegarde de \"{{k}}\" dans le stockage local a été bloquée. Valeur : {{v}}",
+
+  "choose.language": "Choisir une langue"
+}

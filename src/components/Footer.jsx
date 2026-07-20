@@ -14,6 +14,7 @@ import CopyrightIcon from '@mui/icons-material/Copyright';
 import "./FooterGlobal.css";
 import {Link} from "react-router-dom";
 import QuantumField from "./FooterQuantumField.jsx";
+import {useTranslation} from "react-i18next";
 
 const messages = ["ATOILE", "TOILE", "À TOI", "ÉTOILE"];
 const MESSAGE_INTERVAL = 3000;
@@ -24,6 +25,7 @@ export default function Footer({ onOpenCookieSettings }) {
   const [invisible, setInvisible] = useState(false);
   const [observed, setObserved] = useState(false);
   const [msgIndex, setMsgIndex] = useState(0);
+  const {t} = useTranslation();
 
   useEffect(() => {
     const el = footerRef.current;
@@ -53,11 +55,9 @@ export default function Footer({ onOpenCookieSettings }) {
       <QuantumField text={messages[msgIndex]} observed={observed} invisible={invisible} />
       <div className="footer-tabs">
         <div className="footer-tab">
-          <h3 className="tab-title"><Groups2Icon style={{translate: "0 0.13rem"}} /> Association</h3>
+          <h3 className="tab-title"><Groups2Icon style={{translate: "0 0.13rem"}} /> {t("footer.association")}</h3>
           <p className="tab-paragraph">
-            Atoile est une association loi 1901 dédiée au soutient du droit à la réparation et
-            la propriété numérique des terminaux, tout en développant et diffusant gratuitement
-            des logiciels libres et open-source.
+            {t("footer.about")}
           </p>
           <div className="footer-inner-tab">
             <div className="inner-tab-line">
@@ -69,32 +69,33 @@ export default function Footer({ onOpenCookieSettings }) {
           </div>
         </div>
         <div className="footer-tab">
-          <h3 className="tab-title"><DirectionsWalkIcon /> Exploration</h3>
+          <h3 className="tab-title"><DirectionsWalkIcon /> {t("footer.discover")}</h3>
           <div className="footer-inner-tab">
-            <Link to="/" className="inner-tab-line">Accueil</Link>
-            <Link to="/apps" className="inner-tab-line">Nos applications</Link>
-            <Link to="/news" className="inner-tab-line">Actualités</Link>
-            <Link to="/join" className="inner-tab-line">Nous rejoindre</Link>
-            <Link to="/contact" className="inner-tab-line">Nous contacter</Link>
+            <Link to="/" className="inner-tab-line">{t("nav.home")}</Link>
+            <Link to="/news" className="inner-tab-line">{t("nav.news")}</Link>
+            <Link to="/apps" className="inner-tab-line">{t("nav.apps")}</Link>
+            <Link to="/members" className="inner-tab-line">{t("nav.members")}</Link>
+            <Link to="/join" className="inner-tab-line">{t("nav.join-us")}</Link>
+            <Link to="/contact" className="inner-tab-line">{t("nav.contact-us")}</Link>
           </div>
         </div>
         <div className="footer-tab">
-          <h3 className="tab-title"><SecurityIcon /> Transparence</h3>
+          <h3 className="tab-title"><SecurityIcon /> {t("footer.transparency")}</h3>
           <div className="footer-inner-tab">
-            <Link to="/privacy" className="inner-tab-line"><HandshakeIcon /> Politique de confidentialité</Link>
+            <Link to="/privacy" className="inner-tab-line"><HandshakeIcon /> {t("nav.privacy-policy")}</Link>
             <button className="inner-tab-line" onClick={onOpenCookieSettings} >
-              <CookieIcon /> Cookies &amp; stockage local
+              <CookieIcon /> {t("footer.storage")}
             </button>
-            <Link to="/legal-notices" className="inner-tab-line"><DescriptionIcon />Mentions légales</Link>
+            <Link to="/legal-notices" className="inner-tab-line"><DescriptionIcon /> {t("nav.legal-notices")}</Link>
             <Link to="https://github.com/atoile-org/" className="inner-tab-line">
-              <GitHubIcon /> Code source <OpenInNewIcon className="ext-icon" />
+              <GitHubIcon /> {t("nav.source-code")} <OpenInNewIcon className="ext-icon" />
             </Link>
           </div>
         </div>
       </div>
       <div className="footer-bottom-bar">
-        <span className="bottom-bar-text"><CopyrightIcon /> {year} Association Atoile</span>
-        <button style={{paddingLeft: "0.2rem"}} onClick={() => navigator?.clipboard?.writeText("W452020481")} className="bottom-bar-button">RNA n° W452020481 <ContentCopyIcon /></button>
+        <span className="bottom-bar-text"><CopyrightIcon /> {t("footer.bottom.text", {year})}</span>
+        <button style={{paddingLeft: "0.2rem"}} onClick={() => navigator?.clipboard?.writeText("W452020481")} className="bottom-bar-button">{t("footer.bottom.rna")} n° W452020481 <ContentCopyIcon /></button>
       </div>
     </footer>
   );

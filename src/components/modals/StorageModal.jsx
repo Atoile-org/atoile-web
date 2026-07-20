@@ -32,13 +32,13 @@ export default function StorageModal({isStorageModalOpen, setStorageModalOpen}) 
   return (
     <AtoileModal isModalOpen={isStorageModalOpen} setModalOpen={setStorageModalOpen} innerModalFocusableRef={innerModalFocusableRef}>
       <div onClick={(e) => e.stopPropagation()} className="storage-modal atoile-modal atoile-blur-modal">
-        <h2 className="modal-title"><CookieIcon /> Cookies et Stockage local <SaveIcon /></h2>
+        <h2 className="modal-title"><CookieIcon /> {t("modal.storage.title")} <SaveIcon /></h2>
         {isInSettingsPage ? (<>
-          <p className="modal-info">Nous n'utilisons aucun cookies. Tous les systèmes de stockage local sont désactivés par défaut. Vos données ne quittent jamais votre appareil.</p>
+          <p className="modal-info">{t("modal.storage.info")}</p>
           <div className="modal-vars">
             <div className="modal-var">
               <IconSwitch IconOn={DataObjectIcon} IconOff={DataObjectIcon} isSwitchOn={isLocalStorageEnabled} setSwitchOn={setLocalStorageEnabled} />
-              Local Storage
+              {t("modal.storage.ls")}
             </div>
             <div className="modal-var">
               <IconSwitch disabled={!isLocalStorageEnabled} IconOn={FolderIcon} IconOff={FolderOffIcon} isSwitchOn={isCacheEnabled} setSwitchOn={setCacheEnabled} />
@@ -46,13 +46,13 @@ export default function StorageModal({isStorageModalOpen, setStorageModalOpen}) 
             </div>
           </div>
           </>) : (<>
-          <p className="modal-info" style={{marginBottom: "1rem"}}>{localStorageLength < 0 ? t("modal.storage.ls-empty") : localStorageLength < 2 ? t("modal.storage.ls-single") : t("modal.storage.ls-multiple", localStorageLength)}</p>
+          <p className="modal-info" style={{marginBottom: "1rem"}}>{localStorageLength < 1 ? t("modal.storage.ls-empty") : localStorageLength < 2 ? t("modal.storage.ls-single") : t("modal.storage.ls-multiple", { length: localStorageLength })}</p>
           <div className="modal-actions">
-            <button disabled={localStorageLength < 1} onClick={() => exportLocalStorage("open")} className="modal-action" style={{backgroundColor: "#88888866"}}><OpenInNewIcon /> Visionner</button>
-            <button disabled={localStorageLength < 1} onClick={() => exportLocalStorage("download")} className="modal-action" style={{backgroundColor: "#99999966"}}><FileDownloadIcon /> Exporter</button>
-            <button disabled={localStorageLength < 1} onClick={deleteLocalStorage} className="modal-action"><DeleteForeverIcon /> Supprimer</button>
+            <button disabled={localStorageLength < 1} onClick={() => exportLocalStorage("open")} className="modal-action" style={{backgroundColor: "#88888866"}}><OpenInNewIcon /> {t("action.open-in-new")}</button>
+            <button disabled={localStorageLength < 1} onClick={() => exportLocalStorage("download")} className="modal-action" style={{backgroundColor: "#99999966"}}><FileDownloadIcon /> {t("action.download")}</button>
+            <button disabled={localStorageLength < 1} onClick={deleteLocalStorage} className="modal-action"><DeleteForeverIcon /> {t("action.delete")}</button>
           </div>
-          <p className="modal-info">Vous pouvez gérer le cache depuis votre navigateur.</p>
+          <p className="modal-info">{t("modal.storage.cache-info")}</p>
           </>)}
         <div className="modal-footer">
           <button className="modal-change-page" onClick={() => setInSettingsPage(!isInSettingsPage)}>{isInSettingsPage ? (<StorageIcon />) : (<SettingsIcon />)}</button>

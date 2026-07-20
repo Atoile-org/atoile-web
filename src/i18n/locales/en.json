@@ -1,0 +1,47 @@
+{
+  "global.langId": "en",
+  "global.title": "Atoile",
+  "global.pre-title": "ATOILE - ",
+
+  "nav.home": "Home",
+  "nav.about": "About",
+  "nav.news": "News",
+  "nav.members": "Members",
+  "nav.apps": "Our applications",
+  "nav.join-us": "Join us",
+  "nav.contact-us": "Contact us",
+  "nav.privacy-policy": "Privacy policy",
+  "nav.legal-notices": "Legal notices",
+  "nav.source-code": "Source code",
+
+  "action.open-in-new": "View",
+  "action.download": "Download",
+  "action.delete": "Delete",
+
+  "hero.text.line": "Your device. Your rules. Your software.",
+  "hero.text.1": "We advocate for",
+  "hero.text.2": "real ownership",
+  "hero.text.3": ": unlocked bootloaders, open OS choice, the right to repair. We also build free, open-source tools so you always have",
+  "hero.text.4": "a way out of closed ecosystems",
+  "hero.about-us": "About us",
+
+  "modal.storage.title": "Cookies and local Storage",
+  "modal.storage.info": "We don't use any cookies. All storage systems are disabled by default. Your data never leave your device.",
+  "modal.storage.ls": "Local storage",
+  "modal.storage.ls-empty": "Your local storage is empty.",
+  "modal.storage.ls-single": "Your local storage has one unique element.",
+  "modal.storage.ls-multiple": "Your local storage has {{length}} elements.",
+  "modal.storage.cache-info": "You can handle caches with your navigator.",
+
+  "footer.association": "Association",
+  "footer.about": "Atoile is a Non-profit association under the French law of 1901 dedicated supporting the right to repair and digital ownership of devices, while developing and distributing free and open-source software.",
+  "footer.discover": "Discover",
+  "footer.transparency": "Transparency",
+  "footer.storage": "Cookies & local Storage",
+  "footer.bottom.text": "{{year}} Atoile Association",
+  "footer.bottom.rna": "RNA",
+
+  "console.warn.ls-blocked-attempt": "Blocked saving attempt of \"{{k}}\" in localStorage. Value: {{v}}",
+
+  "choose.language": "Choose a language"
+}

@@ -3,6 +3,7 @@
   font-family: "Aero Matics Bold", sans-serif;
   font-weight: bold;
   font-size: 2rem;
+  text-transform: uppercase;
   user-select: none;
   cursor: pointer;
 }

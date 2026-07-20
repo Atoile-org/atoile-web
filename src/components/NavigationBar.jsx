@@ -49,7 +49,7 @@ export default function NavigationBar() {
     <>
       <nav className="navbar">
         <div className="navbar-left">
-          <p onClick={() => navigate("/")} className="navbar-title"> ATOILE </p>
+          <p onClick={() => navigate("/")} className="navbar-title">{t("global.title")}</p>
           <button className="navbar-selector-arrow" onClick={toggleSelector} >
             <ExpandMoreIcon style={isSelectorOpen ? {transform: "rotate(180deg)"} : {}} />
           </button>

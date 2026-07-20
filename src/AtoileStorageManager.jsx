@@ -1,4 +1,5 @@
 import {createContext, useContext, useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 const AtoileStorageManagerContext = createContext({});
 const originalLocalStorageSetItem = localStorage.setItem;
@@ -6,19 +7,20 @@ const originalLocalStorageSetItem = localStorage.setItem;
 function AtoileStorageManagerProvider({children}) {
   const [isLocalStorageEnabled, setLocalStorageEnabled] = useState(localStorage.getItem("enabled") === "true");
   const [isCacheEnabled, setCacheEnabled] = useState(isLocalStorageEnabled && (localStorage.getItem("cacheEnabled") === "true"));
+  const {t} = useTranslation();
 
   useEffect(() => {
     if (!isLocalStorageEnabled) {
       localStorage.clear();
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setCacheEnabled(false);
-      localStorage.setItem = (k, v) => k ? console.warn(`Blocked saving attempt of "${k}" in localStorage. Value: ${v}`) : null;
+      localStorage.setItem = (k, v) => k ? console.warn(t("console.warn.ls-blocked-attempt", {k, v})) : null;
     } else {
       localStorage.setItem = originalLocalStorageSetItem;
       localStorage.setItem("enabled", "true");
       localStorage.setItem("cacheEnabled", `${isCacheEnabled}`);
     }
-  }, [isLocalStorageEnabled, isCacheEnabled]);
+  }, [t, isLocalStorageEnabled, isCacheEnabled]);
 
   const exportLocalStorage = (method = "open") => {
     const blob = new Blob([JSON.stringify(localStorage)], { type: "application/json" });
