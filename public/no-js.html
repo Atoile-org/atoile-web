@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATOILE</title>
+
+    <style>
+        @font-face {
+            font-family: 'Aero Matics';
+            src: url('/font/Aero Matics Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Aero Matics';
+            src: url('/font/Aero Matics Italic.ttf') format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Aero Matics';
+            src: url('/font/Aero Matics Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Aero Matics';
+            src: url('/font/Aero Matics Light Italic.ttf') format('truetype');
+            font-weight: 300;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Aero Matics Bold';
+            src: url('/font/Aero Matics Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Aero Matics';
+            src: url('/font/Aero Matics Bold Italic.ttf') format('truetype');
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Aero Matics Display';
+            src: url('/font/Aero Matics Display Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Aero Matics Display';
+            src: url('/font/Aero Matics Display Italic.ttf') format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Aero Matics Display';
+            src: url('/font/Aero Matics Display Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Aero Matics Display';
+            src: url('/font/Aero Matics Display Light Italic.ttf') format('truetype');
+            font-weight: 300;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Aero Matics Display Bold';
+            src: url('/font/Aero Matics Display Bold.ttf') format('truetype');
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Aero Matics Display';
+            src: url('/font/Aero Matics Display Bold Italic.ttf') format('truetype');
+            font-weight: 700;
+            font-style: italic;
+        }
+    </style>
+
+    <style>
+        html, body {
+            background-color: #000;
+        }
+
+        p {
+            color: #fff;
+        }
+
+        h2, h3, h4, h5, h6 {
+            color: #fff;
+        }
+
+        .no-js-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(17, 17, 17, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 10;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .no-js-title {
+            margin-left: 2vw;
+            font-family: "Aero Matics Bold", sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            text-transform: uppercase;
+            user-select: none;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .no-js-hero-title {
+            color: #fff !important;
+        }
+
+        .no-js-warning {
+            font-family: "Aero Matics Bold", sans-serif;
+            color: #faa;
+            background-color: #9d0000;
+            padding: 0.3rem;
+            padding-left: 0.7rem;
+            padding-right: 0.7rem;
+            border-radius: 0.8rem;
+            margin-right: 2vw;
+        }
+
+        .no-js-warning-small {
+            visibility: hidden;
+            display: none;
+        }
+
+        @media (max-width: 800px) {
+            .no-js-warning {
+                visibility: hidden;
+                display: none;
+            }
+
+            .no-js-warning-small {
+                visibility: visible !important;
+                display: block;
+            }
+        }
+
+        a {
+            color: #33e1ed;
+        }
+
+        .no-js-main {
+            max-width: 46rem;
+            margin: 0 auto;
+            padding: 7rem 1.5rem 4rem;
+        }
+
+        .no-js-hero-title {
+            font-family: "Aero Matics Display Bold", "Aero Matics Bold", sans-serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin: 0 0 0.5rem;
+        }
+
+        .no-js-tagline {
+            font-family: "Aero Matics", sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #a8a8a8;
+            margin: 0 0 2rem;
+        }
+
+        .no-js-main p {
+            font-family: "Aero Matics", sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .no-js-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0 3rem;
+        }
+
+        .no-js-actions a {
+            font-family: "Aero Matics Bold", sans-serif;
+            color: #000;
+            background-color: #fff;
+            text-decoration: none;
+            padding: 0.6rem 1.1rem;
+            border-radius: 0.6rem;
+        }
+
+        .no-js-contact {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            font-family: "Aero Matics", sans-serif;
+            font-weight: 300;
+            color: #a8a8a8;
+            line-height: 1.8;
+        }
+
+        .no-js-section {
+            max-width: 46rem;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .no-js-section h2 {
+            font-family: "Aero Matics Display Bold", "Aero Matics Bold", sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .no-js-section h3 {
+            font-family: "Aero Matics Bold", sans-serif;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .no-js-section p, .no-js-section li {
+            font-family: "Aero Matics", sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        .no-js-section ul {
+            padding-left: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .no-js-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .no-js-section strong {
+            color: #fff;
+        }
+
+        .no-js-footer {
+            background-color: #0a0a0a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 1.5rem 2rem;
+        }
+
+        .no-js-footer-inner {
+            max-width: 46rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+            gap: 2rem;
+        }
+
+        .no-js-footer h3 {
+            font-family: "Aero Matics Bold", sans-serif;
+            font-size: 1rem;
+            margin: 0 0 0.8rem;
+        }
+
+        .no-js-footer p, .no-js-footer a {
+            font-family: "Aero Matics", sans-serif;
+            font-weight: 300;
+            font-size: 0.95rem;
+            color: #a8a8a8;
+            line-height: 1.8;
+            text-decoration: none;
+        }
+
+        .no-js-footer a {
+            display: block;
+        }
+
+        .no-js-footer-bottom {
+            max-width: 46rem;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.5rem;
+            font-family: "Aero Matics", sans-serif;
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: #6e6e6e;
+        }
+    </style>
+
+</head>
+<body>
+<div id="top">
+    <div class="no-js-nav">
+        <p class="no-js-title" >ATOILE</p>
+        <div style="padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: left; align-items: center;" >
+            <p class="no-js-warning"> No-Script compatibility mode </p>
+            <p class="no-js-warning no-js-warning-small">No-JS mode</p>
+        </div>
+    </div>
+
+    <main class="no-js-main">
+        <h1 class="no-js-hero-title">Atoile</h1>
+        <p class="no-js-tagline">Your device. Your rules. Your software.</p>
+
+        <p>
+            We're a non-profit association advocating for real device ownership:
+            unlocked bootloaders, open OS choice, and the right to repair. We also
+            build free, open-source tools so you always have a way out of closed
+            ecosystems.
+        </p>
+
+        <div class="no-js-actions">
+            <a href="https://github.com/Atoile-org">GitHub</a>
+            <a href="mailto:contact@atoile.org">Contact us</a>
+        </div>
+
+        <div class="no-js-contact">
+            <p>This site works better with JavaScript enabled, but here's the essential info in the meantime.</p>
+        </div>
+    </main>
+
+    <section class="no-js-section" id="about">
+        <h2>About us</h2>
+        <p><strong>Your device. Your rules. Your software.</strong></p>
+        <p>
+            We're a collective defending a simple principle: when you buy a device,
+            it's yours. Really yours. Not half-yours, not conditionally yours, not
+            yours only as long as you stay locked inside the manufacturer's
+            ecosystem.
+        </p>
+        <p>
+            That basic idea has somehow become radical. Locked bootloaders, spare
+            parts crippled by "parts pairing," updates that strip away features
+            after a year of use, prices that shift depending on your phone or your
+            location, sensors quietly reporting data you never agreed to share.
+            Dispossession has been normalized, that's why we've decided to push
+            back.
+        </p>
+        <p>
+            We work on three fronts: we <strong>advocate</strong> to change laws
+            and industry practice, we <strong>inform</strong> people about what's
+            actually happening, and we <strong>build</strong> free tools so
+            everyone has a way out, starting now, without waiting for the law to
+            catch up.
+        </p>
+
+        <h3>The right to own your devices</h3>
+        <p>
+            A device you can't repair, modify, or understand isn't really yours,
+            it's a lease disguised as a purchase. We advocate for:
+        </p>
+        <ul>
+            <li><strong>Unlocked bootloaders</strong> on every device, with no unreasonable trade-off or loss of warranty</li>
+            <li><strong>Control over your operating system</strong>, including pressure on manufacturers to open-source or document their drivers</li>
+            <li><strong>The right to repair</strong>: fair-priced spare parts, accessible diagrams and diagnostic tools, and an end to software locks that invalidate legitimate replacement parts</li>
+            <li><strong>An end to planned obsolescence</strong>, with a guaranteed minimum period of security support</li>
+            <li><strong>The right to resell or give away</strong> a device without it being crippled once it changes hands</li>
+            <li><strong>Interoperability</strong>, the freedom to switch providers or repair shops without losing access to your own features or data</li>
+        </ul>
+
+        <h3>The right to privacy</h3>
+        <p>
+            Surveillance isn't the exception anymore, it's become the default
+            business model. We believe it's your call what you share, not the
+            platform's. We advocate for:
+        </p>
+        <ul>
+            <li><strong>Protection against tracking</strong>, whether ad-based, fingerprinting, consent-driven or extracted through deceptive interfaces</li>
+            <li><strong>An end to personalized pricing</strong> based on your device, location, or browsing history</li>
+            <li><strong>Protection against mass surveillance</strong>, public or privatized, deployed without real democratic debate</li>
+            <li><strong>End-to-end encryption by default</strong>, with no backdoors</li>
+            <li><strong>Real data portability</strong>, the ability to export your data and leave without artificial friction</li>
+        </ul>
+
+        <h3>Our tools</h3>
+        <p>
+            We don't just ask nicely. While the law catches up with technical
+            reality, we build free, open tools so people can take back control
+            right now. Our first project is a browser extension in development,
+            aimed at neutralizing dynamic pricing based on your device's data. All
+            our projects are free and open-source, with auditable code and zero
+            data collection on our end.
+        </p>
+
+        <h3>Campaigns &amp; watchdogging</h3>
+        <p>
+            We publicly document what large companies would rather keep quiet:
+            GDPR non-compliance, privatized surveillance, and attacks on device
+            ownership. Our goal isn't to react after the fact, it's to make
+            visible what's being put in place before it becomes a structural
+            problem.
+        </p>
+
+        <h3>Why now</h3>
+        <p>
+            None of this is set in stone. Unlocked bootloaders have existed
+            before. The right to repair is already advancing in some countries.
+            GDPR, flaws and all, shifted the balance of power. But none of it is
+            guaranteed either, it has to be defended, actively, continuously.
+            That's what we're here to do.
+        </p>
+    </section>
+</div>
+
+<footer class="no-js-footer">
+    <div class="no-js-footer-inner">
+        <div>
+            <h3>Association</h3>
+            <p>
+                Atoile is a non-profit association under the French law of 1901
+                dedicated to supporting the right to repair and digital ownership
+                of devices, while developing and distributing free and
+                open-source software.
+            </p>
+            <p>38 Rue du Haut Midi, 45370 DRY, France</p>
+            <a href="mailto:contact@atoile.org">contact@atoile.org</a>
+        </div>
+        <div>
+            <h3>Discover</h3>
+            <a href="#top">Home</a>
+            <a href="#about">About</a>
+        </div>
+        <div>
+            <h3>Transparency</h3>
+            <a href="https://github.com/atoile-org/">Source code (GitHub)</a>
+            <a href="mailto:contact@atoile.org">Privacy &amp; legal questions</a>
+        </div>
+    </div>
+    <div class="no-js-footer-bottom">
+        <span>&copy; 2026 Atoile Association</span>
+        <span>RNA n&deg; W452020481</span>
+    </div>
+</footer>
+</body>
+</html>
