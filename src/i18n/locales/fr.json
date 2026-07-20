@@ -26,6 +26,8 @@
   "hero.about-us": "Qui sommes-nous ?",
   "alt.hero.about-us": "À propos",
 
+  "members.our-members": "Nos membres",
+
   "modal.storage.title": "Cookies et Stockage local",
   "modal.storage.info": "Nous n'utilisons aucun cookies. Tous les systèmes de stockage local sont désactivés par défaut. Vos données ne quittent jamais votre appareil.",
   "modal.storage.ls": "Stockage local",
