@@ -1,4 +1,5 @@
 import "./Members.css"
+import Background from "../../components/Background.jsx";
 import {useTranslation} from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import LanguageIcon from '@mui/icons-material/Language';
@@ -65,11 +66,13 @@ function Member({ member }) {
 export default function Members({ route }) {
     const { t } = useTranslation()
     return (
-        <div className="members-root">
-            <h1>Our Members</h1>
-            <Member
-                member={tbvns}
-            />
-        </div>
+        <Background fixed>
+            <div className="members-root">
+                <h1>Our Members</h1>
+                <Member
+                    member={tbvns}
+                />
+            </div>
+        </Background>
     )
 }

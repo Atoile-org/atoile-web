@@ -1,10 +1,25 @@
 .members-root {
+    position: relative;
+    z-index: 0;
+    min-height: 100vh;
     margin-right: 10vw;
     margin-left: 10vw;
-    margin-top: 3rem;
-    padding: 2rem 2rem 4rem;
+    padding: 3rem 2rem 4rem;
     color: #e8e8e8;
     animation: fadeIn 0.6s ease-out;
+}
+
+.members-root::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    background: radial-gradient(circle at top, rgba(21, 21, 21, 0.55) 0%, rgba(0, 0, 0, 0.8) 65%);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .members-root p, .members-root li {
@@ -54,10 +69,12 @@
     display: flex;
     flex-direction: column;
     width: auto;
-    background: #1a1a1a;
+    background-color: rgba(17, 17, 17, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 0.5rem;
-    border-radius: 2rem;
-    border: #3d3d3d solid 0.1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .member h2 {
@@ -101,8 +118,8 @@
     width: 10rem;
     height: 10rem;
     object-fit: cover;
-    border-radius: 1.5rem;
-    border: #3d3d3d solid 0.1rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .member p {
@@ -127,12 +144,12 @@
 
 .member-social a {
     color: #c4c4c4;
+    transition: opacity 0.2s ease;
 }
 
 .member-social a:hover {
     text-decoration: none;
-    color: #6e6e6e;
-    transition: 0.2s;
+    opacity: 0.8;
 }
 
 .member-social svg {
