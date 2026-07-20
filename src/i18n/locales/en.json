@@ -24,6 +24,7 @@
   "hero.text.3": ": unlocked bootloaders, open OS choice, the right to repair. We also build free, open-source tools so you always have",
   "hero.text.4": "a way out of closed ecosystems",
   "hero.about-us": "About us",
+  "alt.hero.about-us": "About",
 
   "modal.storage.title": "Cookies and local Storage",
   "modal.storage.info": "We don't use any cookies. All storage systems are disabled by default. Your data never leave your device.",

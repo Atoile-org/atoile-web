@@ -66,6 +66,25 @@
   opacity: 0.8;
 }
 
+.side-menu-bottom-content {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-selector-mobile {
+  border: 1px solid #ffffff22;
+  border-radius: 2px;
+  background-color: #ffffff1a;
+}
+
+.navbar-selector-mobile > .navbar-selector-list { padding: 0 0.5rem; }
+.navbar-selector-mobile > .navbar-selector-list > .li { font-size: 1.2rem; }
+
 .menu-overlay {
   position: fixed;
   top: 0;

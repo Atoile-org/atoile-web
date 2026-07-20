@@ -45,7 +45,7 @@
 }
 
 .tab-title {
-  font-family: "Fira Code Medium", serif;
+  font-family: 'Merriweather Variable', sans-serif;
   font-size: 1.3rem;
   display: flex;
   flex-direction: row;
@@ -58,7 +58,7 @@
 
 .tab-paragraph {
   margin: 0;
-  font-family: "Aero Matics", serif;
+  font-family: "Aero Matics", sans-serif;
   text-align: justify;
 }
 

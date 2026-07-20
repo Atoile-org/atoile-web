@@ -6,6 +6,7 @@ import './i18n/languages.js'
 import App from './App.jsx'
 import '@fontsource/vt323'
 import '@fontsource-variable/josefin-sans'
+import '@fontsource-variable/merriweather/wght.css'
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>

@@ -24,6 +24,7 @@
   "hero.text.3": " : déverrouillage des bootloaders, liberté de choisir le système d'exploitation, droit à la réparation. Nous développons également des outils libres et open source afin que vous disposiez toujours",
   "hero.text.4": "d'un moyen de sortir des écosystèmes fermés",
   "hero.about-us": "Qui sommes-nous ?",
+  "alt.hero.about-us": "À propos",
 
   "modal.storage.title": "Cookies et Stockage local",
   "modal.storage.info": "Nous n'utilisons aucun cookies. Tous les systèmes de stockage local sont désactivés par défaut. Vos données ne quittent jamais votre appareil.",

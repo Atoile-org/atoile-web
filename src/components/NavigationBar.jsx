@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MenuIcon from "@mui/icons-material/Menu";
 
-function NavbarSelector({i18n, isSelectorOpen, setSelectorOpen}) {
+function NavbarSelector({mobile = true, i18n, isSelectorOpen, setSelectorOpen}) {
   const LANGUAGES = [
     { code: "fr", label: "Français", flag: "🇫🇷" },
     { code: "en", label: "English",  flag: "🇬🇧" }
@@ -20,9 +20,9 @@ function NavbarSelector({i18n, isSelectorOpen, setSelectorOpen}) {
   };
 
   return (
-    <div className="navbar-selector">
-      {isSelectorOpen && (
-        <ul className="navbar-selector-dropdown" role="listbox">
+    <div className={`navbar-selector${mobile ? "-mobile" : ""}`}>
+      {(isSelectorOpen || mobile) && (
+        <ul className="navbar-selector-list" role="listbox">
           {LANGUAGES.map((l) => (
             <button key={l.code} className={l.code === currentLng.code ? "li active" : "li"} onClick={() => selectLng(l.code)}>
               {l.flag} {l.label}
@@ -51,9 +51,10 @@ export default function NavigationBar() {
         <div className="navbar-left">
           <p onClick={() => navigate("/")} className="navbar-title">{t("global.title")}</p>
           <button className="navbar-selector-arrow" onClick={toggleSelector} >
+            {i18n.language}
             <ExpandMoreIcon style={isSelectorOpen ? {transform: "rotate(180deg)"} : {}} />
           </button>
-          <NavbarSelector i18n={i18n} isSelectorOpen={isSelectorOpen} setSelectorOpen={setSelectorOpen} />
+          <NavbarSelector mobile={false} i18n={i18n} isSelectorOpen={isSelectorOpen} setSelectorOpen={setSelectorOpen} />
         </div>
         <div className="navbar-right-desktop">
           <Link to="/">{t("nav.home")}</Link>
@@ -75,6 +76,9 @@ export default function NavigationBar() {
           <Link to="/about" onClick={closeMenu}>{t("nav.about")}</Link>
           <Link to="/members" onClick={closeMenu}>{"Members"}</Link>
           <a onClick={closeMenu}>{"Social ↓"}</a>
+        </div>
+        <div className="side-menu-bottom-content">
+          <NavbarSelector i18n={i18n} isSelectorOpen={isSelectorOpen} setSelectorOpen={setSelectorOpen} />
         </div>
       </div>
 
