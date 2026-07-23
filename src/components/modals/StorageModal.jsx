@@ -40,10 +40,6 @@ export default function StorageModal({isStorageModalOpen, setStorageModalOpen}) 
               <IconSwitch IconOn={DataObjectIcon} IconOff={DataObjectIcon} isSwitchOn={isLocalStorageEnabled} setSwitchOn={setLocalStorageEnabled} />
               {t("modal.storage.ls")}
             </div>
-            <div className="modal-var">
-              <IconSwitch disabled={!isLocalStorageEnabled} IconOn={FolderIcon} IconOff={FolderOffIcon} isSwitchOn={isCacheEnabled} setSwitchOn={setCacheEnabled} />
-              Cache
-            </div>
           </div>
           </>) : (<>
           <p className="modal-info" style={{marginBottom: "1rem"}}>{localStorageLength < 1 ? t("modal.storage.ls-empty") : localStorageLength < 2 ? t("modal.storage.ls-single") : t("modal.storage.ls-multiple", { length: localStorageLength })}</p>
