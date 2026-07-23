@@ -72,11 +72,8 @@ export default function Footer({ onOpenCookieSettings }) {
           <h3 className="tab-title"><DirectionsWalkIcon /> {t("footer.discover")}</h3>
           <div className="footer-inner-tab">
             <Link to="/" className="inner-tab-line">{t("nav.home")}</Link>
-            <Link to="/news" className="inner-tab-line">{t("nav.news")}</Link>
-            <Link to="/apps" className="inner-tab-line">{t("nav.apps")}</Link>
+            <Link to="/about" className="inner-tab-line">{t("nav.about")}</Link>
             <Link to="/members" className="inner-tab-line">{t("nav.members")}</Link>
-            <Link to="/join" className="inner-tab-line">{t("nav.join-us")}</Link>
-            <Link to="/contact" className="inner-tab-line">{t("nav.contact-us")}</Link>
           </div>
         </div>
         <div className="footer-tab">
