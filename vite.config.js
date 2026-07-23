@@ -7,5 +7,8 @@ export default defineConfig({
   plugins: [react(), svgr()],
   server: {
     host: '0.0.0.0',
+  },
+  build: {
+    cssMinify: 'esbuild'
   }
 })

@@ -70,8 +70,8 @@
     flex-direction: column;
     width: auto;
     background-color: rgba(17, 17, 17, 0.6);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     padding: 0.5rem;
     border-radius: 1rem;
     border: 0.05rem solid rgba(255, 255, 255, 0.2);
