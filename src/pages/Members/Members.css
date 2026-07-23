@@ -75,6 +75,7 @@
     padding: 0.5rem;
     border-radius: 1rem;
     border: 0.05rem solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
 }
 
 .member h2 {

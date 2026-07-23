@@ -60,7 +60,6 @@ export default function NavigationBar() {
           <Link to="/">{t("nav.home")}</Link>
           <Link to="/about">{t("nav.about")}</Link>
           <Link to="/members">{t("nav.members")}</Link>
-          <a>{"Social ↓"}</a> {/* TODO: Make this unfold with a link to all social medias */}
         </div>
         <div className="navbar-right-mobile">
           <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
@@ -75,7 +74,6 @@ export default function NavigationBar() {
           <Link to="/" onClick={closeMenu}>{t("nav.home")}</Link>
           <Link to="/about" onClick={closeMenu}>{t("nav.about")}</Link>
           <Link to="/members" onClick={closeMenu}>{"Members"}</Link>
-          <a onClick={closeMenu}>{"Social ↓"}</a>
         </div>
         <div className="side-menu-bottom-content">
           <NavbarSelector i18n={i18n} isSelectorOpen={isSelectorOpen} setSelectorOpen={setSelectorOpen} />
