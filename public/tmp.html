@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Effet de Points Progressif</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: #111; }
+    canvas { display: block; }
+    #loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; }
+  </style>
+</head>
+<body>
+<div id="loading">Chargement...</div>
+
+<!-- Import de Three.js via CDN -->
+<script type="importmap">
+  {
+      "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      }
+  }
+</script>
+
+<script type="module">
+  import * as THREE from 'three';
+
+  // --- 1. Configuration de la Scène ---
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  // --- 2. Préparer le Texte (Canevas caché) ---
+  // On crée un caneau HTML pour générer l'image du texte, puis on l'utilise en texture WebGL
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = 512;
+  canvas.height = 256;
+
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 120px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('BRAVE', canvas.width / 2, canvas.height / 2);
+
+  const textTexture = new THREE.CanvasTexture(canvas);
+  document.getElementById('loading').style.display = 'none'; // Cache le message
+
+  // --- 3. Le Shader (GLSL) ---
+  // Vertex Shader : Transforme les coordonnées du plan
+  const vertexShader = `
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = vec4(position, 1.0);
+            }
+        `;
+
+  // Fragment Shader : Détermine la couleur de chaque pixel
+  const fragmentShader = `
+            uniform sampler2D tDiffuse;
+            uniform float uProgress; // De 0.0 à 1.0
+            uniform vec2 uResolution;
+
+            varying vec2 vUv;
+
+            // Fonction pour créer un point aléatoire à une position donnée
+            float random(vec2 st) {
+                return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+            }
+
+            void main() {
+                // 1. Récupérer la couleur du pixel du texte original
+                vec4 color = texture2D(tDiffuse, vUv);
+
+                // 2. On ne s'intéresse qu'à la luminosité (le canal Alpha ou Rouge)
+                float brightness = color.r;
+
+                // 3. Logique de progression
+                // Si la luminosité est supérieure au seuil uProgress, le point apparaît
+                float alpha = smoothstep(uProgress, uProgress + 0.02, brightness);
+
+                // 4. Ajouter un effet de "grain" aléatoire pour faire des points
+                // On compare une valeur aléatoire pour décider si on dessine le point
+                float noise = random(vUv * uProgress * 10.0);
+                float pointAlpha = step(noise, 0.4); // 0.4 contrôle la densité des points
+
+                // On combine l'alpha du texte et le bruit pour créer l'effet de points
+                vec3 finalColor = vec3(0.0, 0.8, 1.0); // Couleur du point (Bleu)
+
+                // On ne dessine le point que si le pixel fait partie du texte ET si le bruit l'autorise
+                if (brightness > uProgress) {
+                    gl_FragColor = vec4(finalColor, alpha * pointAlpha);
+                } else {
+                    gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+                }
+            }
+        `;
+
+  // --- 4. Création du Matériau et du Plan ---
+  const geometry = new THREE.PlaneGeometry(2, 1);
+  const material = new THREE.ShaderMaterial({
+    uniforms: {
+      tDiffuse: { value: textTexture },
+      uProgress: { value: 0.0 }, // Commence à 0
+      uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+    },
+    vertexShader: vertexShader,
+    fragmentShader: fragmentShader,
+    transparent: true,
+    // Désactive le blending par défaut pour mieux contrôler l'alpha
+    blending: THREE.AdditiveBlending
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  // --- 5. Animation ---
+  let progress = 0.0;
+  const duration = 2000; // Durée en ms
+  const startTime = performance.now();
+
+  function animate(time) {
+    requestAnimationFrame(animate);
+
+    // Calcul de la progression (0 à 1)
+    const elapsed = time - startTime;
+    progress = Math.min(elapsed / duration, 1.0);
+
+    // Mise à jour de l'uniforme
+    material.uniforms.uProgress.value = progress;
+
+    renderer.render(scene, camera);
+  }
+
+  animate(0);
+
+  // Gestion du redimensionnement
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    material.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+  });
+</script>
+</body>
+</html>
